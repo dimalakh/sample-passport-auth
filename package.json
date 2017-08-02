@@ -1,0 +1,30 @@
+{
+  "name": "sample-passport-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.11.5",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-http-bearer": "^1.0.1",
+    "passport-instagram": "^1.0.0"
+  },
+  "devDependencies": {
+    "@eleks/eslint-config-eleks": "^0.2.1",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0"
+  }
+}

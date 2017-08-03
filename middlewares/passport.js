@@ -14,12 +14,12 @@ const facebookCreds = {
 passport.use(
     new FacebookStrategy(
         facebookCreds,
-        function (accessToken, refreshToken, profile, done) {
+        (accessToken, refreshToken, profile, done) => {
             User.findOrCreate(
                 { facebookId: profile.id },
-                function (err, result) {
+                (err, result) => {
                     if (result) {
-                        result.access_token = accessToken; //eslint-disable-line
+                        result.token = accessToken;
                         result.save((err, doc) => {
                             done(err, doc);
                         });
@@ -43,12 +43,12 @@ const instagramCreds = {
 passport.use(
     new InstagramStrategy(
         instagramCreds,
-        function (accessToken, refreshToken, profile, done) {
+        (accessToken, refreshToken, profile, done) => {
             User.findOrCreate(
                 { instagramId: profile.id },
-                function (err, result) {
+                (err, result) => {
                     if (result) {
-                        result.access_token = accessToken; // eslint-disable-line
+                        result.token = accessToken; // eslint-disable-line
                         result.save((err, doc) => {
                             done(err, doc);
                         });
@@ -65,9 +65,9 @@ passport.use(
 
 passport.use(
     new BearerStrategy(
-        function (token, done) {
-            User.findOne({ access_token: token }) //eslint-disable-line
-                .select(['-password', '-access_token'])
+        (token, done) => {
+            User.findOne({ token }) //eslint-disable-line
+                .select(['-password', '-token'])
                 .exec((err, user) => {
                     if (err) return done(err);
 

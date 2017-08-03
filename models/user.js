@@ -13,17 +13,17 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String
     },
-    access_token: { //eslint-disable-line
+    token: {
         type: String
-    },
+    }
 });
 
 UserSchema.statics.findOrCreate = function (filters, cb) {
-    this.find(filters, function (err, results) {
-        if (results.length === 0) {
-            const newUser = new User();
+    const User = this;
 
-            newUser.facebookId = filters.facebookId;
+    this.find(filters, (err, results) => {
+        if (results.length === 0) {
+            const newUser = new User(filters);
 
             newUser.save((err, doc) => {
                 cb(err, doc);

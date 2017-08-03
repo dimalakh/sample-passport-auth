@@ -23,7 +23,7 @@ router.get('/auth/facebook',
 router.get('/auth/facebook/callback',
     passport.authenticate('facebook', { session: false, failureRedirect: '/' }),
     (req, res) => {
-        res.send(req.user.access_token);
+        res.send(req.user.token);
     }
 );
 
@@ -35,7 +35,7 @@ router.get('/auth/instagram',
 router.get('/auth/instagram/callback',
     passport.authenticate('instagram', { session: false, failureRedirect: '/' }),
     (req, res) => {
-        res.send(req.user.access_token);
+        res.send(req.user.token);
     }
 );
 

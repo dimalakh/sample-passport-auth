@@ -10,6 +10,9 @@ module.exports = {
         "one-var": [2, {
             "uninitialized": "always",
             "initialized": "never"
-        }]
+        }],
+        "no-magic-numbers": 0,
+        "no-process-env": 0,
+        "no-shadow": 0
     }
 };

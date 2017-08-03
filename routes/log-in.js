@@ -6,21 +6,22 @@ module.exports = function (req, res) {
     User.findOne({
         email: req.body.email
     })
+        .select('-token')
         .exec((err, user) => {
             if (err) return res.send(err);
 
             if (user === null) return res.sendStatus(404);
 
             if (bcrypt.compareSync(req.body.password, user.password)) {
-                const token = jwt.sign(
+                const accessToken = jwt.sign(
                     user,
-                    'secretKey'
+                    process.env.JWT_SECRET_KEY
                 );
 
-                user.access_token = token; //eslint-disable-line
+                user.token = accessToken;
                 user.save();
 
-                return res.json(token);
+                return res.json(accessToken);
             }
 
             return res.sendStatus(401);
